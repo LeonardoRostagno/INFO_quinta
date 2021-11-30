@@ -1,0 +1,71 @@
+SPIEGAZIONE NORMALIZZAZIONE del DATABASE ARCHIVIO FOTOGRAFICO
+
+--1FN--------------------------------------------------------------------------------
+Vado a scindere gli attributi non atomici nelle varie tabelle del db, come segue:
+
+Tabella : Archivi
+indirizzo [TEXT NOT NULL] --> via_indirizzo [TEXT NOT NULL]
+			--> num_civico_indirizzo [INTEGER NOT NULL]
+orario_apertura [INTEGER] --> orario_apertura(ore) [INTEGER]
+			--> orario_apertura(minuti) [INTEGER]
+orario_chiusura [INTEGER] --> orario_chiusura(ore) [INTEGER]
+			--> orario_chiusura(minuti) [INTEGER]
+	
+Tabella : Foto
+dimensione [INTEGER NOT NULL] --> dim_x [INTEGER NOT NULL] 
+			--> dim_y [INTEGER NOT NULL] 
+
+Tabella : Luoghi
+Nessun cambiamento
+
+Tabella : Personaggi
+data_nascita [INTEGER NOT NULL] --> data_nascita(anno) [INTEGER NOT NULL]
+			--> data_nascita(mese) [INTEGER NOT NULL]
+			--> data_nascita(giorno) [INTEGER NOT NULL]
+data_morte [INTEGER] --> data_morte(anno) [INTEGER]
+			--> data_morte(mese) [INTEGER]
+			--> data_morte(giorno) [INTEGER]
+data_inizio_partito [INTEGER] --> data_inizio_partito(anno) [INTEGER]
+			--> data_inizio_partito(mese) [INTEGER]
+			--> data_inizio_partito(giorno) [INTEGER]
+data_fine_partito [INTEGER] --> data_fine_partito(anno) [INTEGER]
+			--> data_fine_partito(mese) [INTEGER]
+			--> data_fine_partito(giorno) [INTEGER]
+
+--2FN--------------------------------------------------------------------------------
+La seconda forma di normalizzazione si applica se incorriamo in tabelle che 
+presentano un chiave primaria composta(formata da almeno 2 attributi).
+Dato che nessuna delle tabelle del database presenta questa chiave, non si può 
+applicare queste modifiche, quindi il db e le sue tabelle sono già in 2FN.
+
+--3FN--------------------------------------------------------------------------------
+Con la terza forma di normalizzazione vado a eliminare le anomalie di aggiornamento,
+come segue:
+
+Tabella : Archivi
+- determinate --> città
+- determinati --> via_indirizzo, num_civico_indirizzo
+
+* Creazione tabella Città con:
+	- primary_key --> città [TEXT NOT NULL]
+	- attributi --> via_indirizzo [TEXT NOT NULL]
+		--> num_civico_indirizzo [INTEGER NOT NULL]
+
+* Eliminazione degli attributi via_indirizzo, num_civico_indirizzo da Archivi, 
+  con trasformazione di città in fk
+
+Tabella : Foto
+- determinante --> tipo_foto
+- determinati --> st_conservazione, tipo_stampa
+
+* Creazione tabella Tipo_foto con:
+	- primary_key --> tipo_foto [TEXT NOT NULL]
+	- attributi --> st_conservazione [TEXT NOT NULL]
+		--> tipo_stampa [TEXT]
+
+* Eliminazione degli attributi st_conservazione, tipo_stampa da Foto, 
+  con trasformazione di tipo_foto in fk
+
+Tabella : Luoghi
+Nessun cambiamento
+

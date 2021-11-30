@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/user/Documents/ITIS_LEO/5_quinta/INFORMATICA/SQL/2021-11-24_attori-film-rec-prod-sale/2021-11-24_attori-film-rec-prod-sale.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4084"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="2" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainAttori"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT Citta
+FROM Sala
+WHERE Citta = &quot;Cuneo&quot;</sql><sql name="SQL 2">SELECT Titolo,AnnoProd
+FROM Film 
+WHERE Regista = &quot;Sorrentino&quot;</sql><sql name="SQL 3">SELECT Titolo, Durata
+FROM Film
+WHERE Genere = &quot;fantascienza&quot; and (Nazionalita = &quot;americana&quot; or Nazionalita = &quot;giapponese&quot;)</sql><sql name="SQL 4">SELECT Titolo
+FROM Film
+WHERE Genere = &quot;fantascienza&quot; and (Nazionalita = &quot;americana&quot; or Nazionalita = &quot;giapponese&quot;) and AnnoProd &gt; 2010
+</sql><sql name="SQL 5">SELECT Titolo, Genere
+FROM Film F, Proiezioni P
+WHERE P.DataProiezione_anno = 2018 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25</sql><sql name="SQL 6">SELECT Titolo, Genere
+FROM Film F, Proiezioni P, Sala S
+WHERE P.CodSala = S.CodSala and P.DataProiezione_anno = 2018 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25 and S.citta = &quot;Cuneo&quot;</sql><sql name="SQL 7">SELECT Nome
+FROM Sala S, Proiezioni P, Recita R, Attori A
+WHERE S.Citta = &quot;Cuneo&quot; and P.DataProiezione_anno = 2019 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25 and P.CodFilm = R.CodFilm and A.CodAttore = R.CodAttore and A.nome = &quot;John Boyega&quot;</sql><sql name="SQL 8">SELECT Titolo, Nome
+FROM Film F, Attori A, Recita R
+WHERE A.Nazionalita = &quot;italia&quot; and R.CodAttore = A.CodAttore and F.CodFilm = R.CodFilm</sql><sql name="SQL 9">SELECT titolo, Nome
+From Film F, Sala S, Proiezioni P
+WHERE P.DataProiezione_anno = 2019 and P.DataProiezione_mese = 01 and S.Citta = &quot;Torino&quot; and P.CodFilm = F.CodFilm and P.CodSala = S.CodSala</sql><current_tab id="8"/></tab_sql></sqlb_project>

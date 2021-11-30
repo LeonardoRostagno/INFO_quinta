@@ -1,0 +1,18 @@
+/* punto 1*/
+SELECT Titolo, Tipo 
+FROM Titoli; 
+
+/* punto 2*/
+SELECT RagioneSociale, Citta 
+FROM CaseEditrici 
+WHERE Citta = "Milano"; 
+
+/* punto 3 */
+SELECT Titolo, RagioneSociale
+FROM Titoli T, CaseEditrici C
+WHERE T.id_CasaEd = C.id_CasaEd
+
+/* punto 4 */
+SELECT Nome, Cognome, Titolo
+FROM Autore A, Titoli T, Autori_Titoli R
+WHERE T.ID_Titolo = R.ID_Titolo and A.ID_Autore = R.ID_Autore and A.Nome = "Norberto" and A.Cognome = "Sommo"

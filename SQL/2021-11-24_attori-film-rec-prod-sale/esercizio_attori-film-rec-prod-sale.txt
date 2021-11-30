@@ -1,0 +1,45 @@
+	punto 1
+SELECT Citta
+FROM Sale
+WHERE Citta = "Cuneo"
+
+	punto 2
+SELECT Titolo,AnnoProd
+FROM Film 
+WHERE Regista = "Sorrentino"
+
+	punto 3
+SELECT Titolo, Durata
+FROM Film
+WHERE Genere = "fantascienza" and (Nazionalita = "americana" or Nazionalita = "giapponese")
+
+	punto 4
+SELECT Titolo
+FROM Film
+WHERE Genere = "fantascienza" and (Nazionalita = "americana" or Nazionalita = "giapponese") and AnnoProd > 2010
+
+	punto 5
+SELECT Titolo, Genere
+FROM Film F, Proiezioni P
+WHERE P.DataProiezione_anno = 2018 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25
+
+	punto 6
+SELECT Titolo, Genere
+FROM Film F, Proiezioni P, Sala S
+WHERE P.CodSala = S.CodSala and P.DataProiezione_anno = 2018 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25 and S.citta = "Cuneo"
+	
+	punto 7
+SELECT Nome
+FROM Sala S, Proiezioni P, Recita R, Attori A
+WHERE S.Citta = "Cuneo" and P.DataProiezione_anno = 2019 and P.DataProiezione_mese = 12 and P.DataProiezione_giorno = 25 and P.CodFilm = R.CodFilm and A.CodAttore = R.CodAttore and A.nome = "John Boyega"
+	
+	punto 8
+SELECT Titolo, Nome
+FROM Film F, Attori A, Recita R
+WHERE A.Nazionalita = "italia" and R.CodAttore = A.CodAttore and F.CodFilm = R.CodFilm
+
+	punto 9
+SELECT titolo, Nome
+From Film F, Sala S, Proiezioni P
+WHERE P.DataProiezione_anno = 2019 and P.DataProiezione_mese = 01 and S.Citta = "Torino" and P.CodFilm = F.CodFilm and P.CodSala = S.CodSala
+
